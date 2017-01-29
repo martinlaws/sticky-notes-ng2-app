@@ -8,7 +8,7 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class AuthService implements CanActivate {
-  JWT_KEY: string = 'token';
+  JWT_KEY: string = 'retain_token';
   JWT: string = '';
 
   constructor(
@@ -25,8 +25,10 @@ export class AuthService implements CanActivate {
   }
 
   setJwt(jwt: string) {
-    window.localStorage.setItem(this.JWT_KEY, jwt);
-    this.api.setHeaders({Authorization: `Bearer ${jwt}`});
+    if (jwt !== null) {
+      window.localStorage.setItem(this.JWT_KEY, jwt);
+      this.api.setHeaders({Authorization: `Bearer ${jwt}`});
+    }
   }
 
   isAuthorized(): boolean {
