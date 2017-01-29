@@ -13,9 +13,7 @@ export class ApiService {
 
   api_url: string = 'http://localhost:3500';
 
-  constructor(private http: Http) {
-
-  }
+  constructor(private http: Http) {  }
 
   private getJson(resp: Response) {
     return resp.json();

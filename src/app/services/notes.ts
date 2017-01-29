@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api';
 
 export class NoteService {
-  path: string = '/notes'
+  path: string = '/notes';
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService) {
+
+  }
 
   createNote(note) {
     return this.api.post(this.path, note);
