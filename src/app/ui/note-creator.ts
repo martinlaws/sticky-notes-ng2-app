@@ -17,10 +17,13 @@ import { Component, Output, EventEmitter } from '@angular/core';
     }
   `],
   template: `
-    <div class="note-creator shadow-2">
+    <div
+      class="note-creator shadow-2"
+      [ngStyle]="{'background-color': newNote.color}"
+    >
       <form
         class="row"
-        (submit)="onCreateNote()"
+        (ngSubmit)="onCreateNote()"
       >
         <input
           type="text"
@@ -28,15 +31,27 @@ import { Component, Output, EventEmitter } from '@angular/core';
           name="newNoteTitle"
           placeholder="Title"
           class="col-xs-10 title"
+          *ngIf="fullForm"
         >
         <input
           type="text"
+          (focus)="toggleFullForm(true)"
           [(ngModel)]="newNote.value"
           name="newNoteValue"
           placeholder="Take a note..."
           class="col-xs-10"
         >
-        <div class="actions col-xs-12 row between-xs">
+        <div
+          class="actions col-xs-12 row between-xs"
+          *ngIf="fullForm"
+        >
+          <div className="col-xs-3">
+            <color-picker
+              [colors]="colors"
+              (selected)="onColorSelect($event)"
+            >
+            </color-picker>
+          </div>
           <button
             type="submit"
             class="btn-light"
@@ -51,26 +66,40 @@ import { Component, Output, EventEmitter } from '@angular/core';
 export class NoteCreator {
   @Output() createNote = new EventEmitter;
 
+  colors: string[] = ['#75EB00', '#53BBF4', '#FF85CB', '#FF432E', '#FFAC00']
+
   newNote = {
     title: '',
-    value: ''
+    value: '',
+    color: 'white'
   };
 
+  fullForm: boolean = false;
+
   onCreateNote() {
-    const { title, value } = this.newNote;
+    const { title, value, color } = this.newNote;
 
     if (title && value) {
-      this.createNote.next({ title, value });
+      this.createNote.next({ title, value, color });
     }
 
     this.reset();
+    this.toggleFullForm(false);
   }
 
   reset() {
     this.newNote = {
       title: '',
-      value: ''
+      value: '',
+      color: 'white'
     };
   }
 
+  toggleFullForm(value: boolean) {
+    this.fullForm = value;
+  }
+
+  onColorSelect(color: string) {
+    this.newNote.color = color;
+  }
 };
