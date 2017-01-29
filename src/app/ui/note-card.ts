@@ -19,6 +19,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
       text-align: left;
       font-size: 1.4rem;
       font-weight: 200;
+      word-wrap: break-word;
     }
     .icon {
       position: absolute;
