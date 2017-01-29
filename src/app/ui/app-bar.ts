@@ -7,7 +7,7 @@ import { AuthService } from '../services/auth';
     .app-bar {
       height: 65px;
       padding: 5px 30px;
-      background-color: #6789ff;
+      background-color: #53BBF4;
     }
     .logo {
       color: white;
