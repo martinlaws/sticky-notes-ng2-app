@@ -25,7 +25,7 @@ import { Component } from '@angular/core';
     <header class="app-bar row middle-xs">
       <span
         class="logo col-xs-10"
-        [router-link]="['']"
+        [routerLink]="['']"
       >
         Martin's Sticky Notes
       </span>
