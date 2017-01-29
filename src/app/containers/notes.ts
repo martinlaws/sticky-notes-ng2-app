@@ -34,11 +34,16 @@ import { NoteService } from '../services';
   `
 })
 export class NotesContainer {
-  notes = []
+  notes = [];
 
   constructor(private noteService: NoteService) {
     this.noteService.getNotes()
     .subscribe(resp => this.notes = resp.data);
+  }
+
+  onCreateNote(note) {
+    this.noteService.createNote(note)
+    .subscribe(note => this.notes.push(note));
   }
 
   onNoteChecked(note) {
@@ -47,11 +52,6 @@ export class NotesContainer {
       const i = this.notes.findIndex(localNote => localNote.id === note.id);
 
       this.notes.splice(i, 1);
-    })
-  }
-
-  onCreateNote(note) {
-    this.noteService.createNote(note)
-    .subscribe(note => this.notes.push(note));
+    });
   }
 };
