@@ -107,7 +107,7 @@ export class Auth {
   mode: string = 'signin';
   linkText: string = 'Don\'t have an account?';
 
-  constructor(private router: Router, private auth: AuthService) {  }
+  constructor(private router: Router, private authService: AuthService) {  }
 
   changeMode() {
     if (this.mode === 'signin') {
@@ -120,7 +120,7 @@ export class Auth {
   }
 
   authenticate() {
-    this.auth.authenticate(this.mode, this.user)
+    this.authService.authenticate(this.mode, this.user)
       .subscribe(() => this.router.navigate(['']));
   }
 };
