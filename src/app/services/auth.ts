@@ -13,7 +13,7 @@ export class AuthService implements CanActivate {
 
   constructor(
     private storeHelper: StoreHelper,
-    private api: ApiService,
+    private apiService: ApiService,
     private router: Router,
     private store: Store
   ) {
@@ -27,7 +27,7 @@ export class AuthService implements CanActivate {
   setJwt(jwt: string) {
     if (jwt !== null) {
       window.localStorage.setItem(this.JWT_KEY, jwt);
-      this.api.setHeaders({Authorization: `Bearer ${jwt}`});
+      this.apiService.setHeaders({Authorization: `Bearer ${jwt}`});
     }
   }
 
@@ -49,7 +49,7 @@ export class AuthService implements CanActivate {
   }
 
   authenticate(path, credentials): Observable<any> {
-    return this.api.post(`/${path}`, credentials)
+    return this.apiService.post(`/${path}`, credentials)
       .do((resp: any) => this.setJwt(resp.token))
       .do((resp: any) => this.storeHelper.update('user', resp.data))
       .map((resp: any) => resp.data);
