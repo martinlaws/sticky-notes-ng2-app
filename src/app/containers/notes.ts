@@ -11,6 +11,9 @@ import { Store } from '../store';
     .creator {
       margin-bottom: 40px;
     }
+    note-card {
+      margin: 10px 0;
+    }
   `],
   template: `
     <div class="row center-xs notes">
@@ -21,7 +24,7 @@ import { Store } from '../store';
         </note-creator>
       </div>
       <div class="notes col-xs-8">
-        <div class="row between-xs">
+        <div class="row xs">
           <note-card
             class="col-xs-4"
             [note]="note"
