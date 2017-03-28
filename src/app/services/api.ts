@@ -31,7 +31,7 @@ export class ApiService {
   }
 
   get(path: string): Observable<any> {
-    return this.http.get(`${this.api_url}${path}`, this.headers)
+    return this.http.get(`${this.api_url}${path}`, {headers: this.headers})
     .map(this.checkForError)
     .catch(err => Observable.throw(err))
     .map(this.getJson)
@@ -49,7 +49,7 @@ export class ApiService {
   }
 
   delete(path: string): Observable<any> {
-    return this.http.delete(`${this.api_url}${path}`, this.headers)
+    return this.http.delete(`${this.api_url}${path}`, {headers: this.headers})
     .map(this.checkForError)
     .catch(err => Observable.throw(err))
     .map(this.getJson)
