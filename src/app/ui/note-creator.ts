@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, HostListener, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'note-creator',
@@ -66,7 +66,19 @@ import { Component, Output, EventEmitter } from '@angular/core';
 export class NoteCreator {
   @Output() createNote = new EventEmitter;
 
-  colors: string[] = ['#75EB00', '#53BBF4', '#FF85CB', '#FF432E', '#FFAC00']
+  constructor(private _elementRef: ElementRef) { }
+
+  @HostListener('document:click', ['$event.target'])
+    public onClick(targetElement: any) {
+        if (this.fullForm) {
+            const clickedInside = this._elementRef.nativeElement.contains(targetElement) || targetElement.classList.contains('color-picker');
+            if (!clickedInside) {
+                this.toggleFullForm(false);
+            }
+        }
+    }
+
+  colors: string[] = ['#ACF39D', '#9CFFFA', '#E3B5A4', '#E85F5C', '#fff']
 
   newNote = {
     title: '',

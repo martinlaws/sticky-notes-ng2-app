@@ -33,18 +33,18 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     }
   `],
   template: `
-  <div class="color-selector">
+  <div class="color-selector color-picker">
     <i
-      class="material-icons icon"
+      class="material-icons icon color-picker"
       (click)="showSelector(true)"
     >
     color_lens
     </i>
     <div
-      class="selector row center-xs"
+      class="selector row center-xs color-picker"
       *ngIf="isSelectorVisible"
     >
-      <div class="color"
+      <div class="color color-picker"
           *ngFor="let color of colors"
           (click)="selectColor(color)"
           [ngStyle]="{'background-color': color}"
