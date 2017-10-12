@@ -32,7 +32,7 @@ import { AuthService } from '../services/auth';
       </span>
       <nav class="col-xs-2">
         <div class="row middle-xs between-xs">
-          <span class="link">Settings</span>
+          <span class="link" (click)="launchSettings()">Settings</span>
           <span class="link" (click)="signout()">Log Out</span>
         </div>
       </nav>
@@ -44,5 +44,9 @@ export class AppBar {
 
   signout() {
     this.authService.signout();
+  }
+
+  launchSettings() {
+      alert(`You've launched settings!`);
   }
 };

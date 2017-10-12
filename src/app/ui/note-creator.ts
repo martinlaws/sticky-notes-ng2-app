@@ -78,7 +78,7 @@ export class NoteCreator {
         }
     }
 
-  colors: string[] = ['#ACF39D', '#9CFFFA', '#E3B5A4', '#E85F5C', '#fff']
+  colors: string[] = ['#ACF39D', '#9CFFFA', '#E3B5A4', '#E85F5C', 'papayawhip']
 
   newNote = {
     title: '',
