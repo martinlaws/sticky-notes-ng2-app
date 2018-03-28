@@ -1,5 +1,7 @@
 # Sticky Notes Angular 2 App
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/martinlaws/sticky-notes-ng2-app.svg)](https://greenkeeper.io/)
+
 ![App Screenshot](http://i.imgur.com/NvElMYm.png)
 
 This app is a proof-of-concept UI app made in Angular 2. In order to get the UI server going, run `npm install`, then `npm start`.
